@@ -83,6 +83,7 @@ output: x the camera output, g_y the corresponding landmark"""
     while(no_pic == True):
         # Capture frame-by-frame
         ret, frame = cap.read()
+        print(ret)
         RGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frames_list = [RGB]
 
@@ -138,4 +139,4 @@ output: x the camera output, g_y the corresponding landmark"""
     x = frame_mark[0,0].to(device)
     g_y = frame_mark[0,1].to(device)
     
-    return x,g_y
+    return x,g_y,ret

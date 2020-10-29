@@ -15,11 +15,13 @@ from loss.loss_generator import *
 """Hyperparameters and config"""
 device = torch.device("cuda:0")
 cpu = torch.device("cpu")
-path_to_embedding = 'e_hat_video.tar'
+path_to_embedding = 'e_hat_images.tar'
+new_embedding = 'e_hat_images_new.tar'
 path_to_chkpt = 'model_weights.tar'
 path_to_save = 'finetuned_model.tar'
 path_to_video = 'examples/fine_tuning/test_video.mp4'
 path_to_images = 'examples/fine_tuning/test_images'
+path_to_images = 'examples/jason'
 
 
 """Create dataset and net"""
@@ -58,7 +60,7 @@ lossesG = []
 lossesD = []
 i_batch_current = 0
 
-num_epochs = 40
+num_epochs = 1000
 
 #Warning if checkpoint inexistant
 if not os.path.isfile(path_to_chkpt):
@@ -93,6 +95,7 @@ for epoch in range(num_epochs):
             #forward
             #train G and D
             x_hat = G(g_y, e_hat)
+            print(g_y.shape)
             r_hat, D_hat_res_list = D(x_hat, g_y, i=0)
             r, D_res_list = D(x, g_y, i=0)
 
@@ -122,7 +125,7 @@ for epoch in range(num_epochs):
 
 
         # Output training stats
-        if epoch % 10 == 0:
+        if epoch % 999 == 998:
             batch_end = datetime.now()
             avg_time = (batch_end - batch_start) / 10
             print('\n\navg batch time for batch size of', x.shape[0],':',avg_time)
@@ -177,3 +180,8 @@ torch.save({
         'optimizerD_state_dict': optimizerD.state_dict(),
         }, path_to_save)
 print('...Done saving latest')
+
+torch.save({
+        'e_hat': e_hat
+        }, new_embedding)
+print('...Done saving')

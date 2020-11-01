@@ -50,7 +50,7 @@ def generate_landmarks(frames_list):
     fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False, device ='cuda')
     
     for i in range(len(frames_list)):
-        if True:
+        Try:
             input = frames_list[i]
             preds = fa.get_landmarks(input)[0]
 
@@ -83,7 +83,7 @@ def generate_landmarks(frames_list):
 
             frame_landmark_list.append((input, data))
             plt.close(fig)
-        else:
+        except:
             print('Error: Video corrupted or no landmarks visible')
             return None
     

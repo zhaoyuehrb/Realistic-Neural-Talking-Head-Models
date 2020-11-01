@@ -24,7 +24,7 @@ class VidDataSet(Dataset):
         path = os.path.join(self.path_to_mp4, file)
         frame_mark = select_frames(path , self.K)
         frame_mark = generate_landmarks(frame_mark)
-        if not len(frame_mark): return self.__getitem__(idx//2)
+        if frame_mark is None: return self.__getitem__(idx//2)
         frame_mark = torch.from_numpy(np.array(frame_mark)).type(dtype = torch.float) #K,2,224,224,3
         #print(frame_mark.shape,idx)
         if not len(frame_mark): return self.__getitem__(idx//2)

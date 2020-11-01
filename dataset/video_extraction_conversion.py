@@ -145,6 +145,7 @@ def generate_cropped_landmarks(frames_list, pad=50):
             plt.close(fig)
         except:
             print('Error: Video corrupted or no landmarks visible')
+            return None
     
     for i in range(len(frames_list) - len(frame_landmark_list)):
         #filling frame_landmark_list in case of error

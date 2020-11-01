@@ -27,7 +27,7 @@ print(len(fid))
 
 
 """Create dataset and net"""
-device = torch.device("cuda:0")
+device = torch.device("cuda")
 cpu = torch.device("cpu")
 path_to_chkpt = 'model_weights_size'+dat_size+'epoch'+num_epochs+'batch'+batch_size+'.tar'
 path_to_backup = 'backup_model_weights_.tar'

@@ -13,11 +13,15 @@ from loss.loss_generator import *
 from network.blocks import *
 from network.model import *
 
+
+num_epochs = 750
+
+
 """Create dataset and net"""
 device = torch.device("cuda:0")
 cpu = torch.device("cpu")
-path_to_chkpt = 'model_weights.tar'
-path_to_backup = 'backup_model_weights.tar'
+path_to_chkpt = 'model_weights_.tar'
+path_to_backup = 'backup_model_weights_.tar'
 dataset = VidDataSet(K=8, path_to_mp4 = 'mp4', device=device)
 
 dataLoader = DataLoader(dataset, batch_size=2, shuffle=True)
@@ -47,7 +51,7 @@ lossesG = []
 lossesD = []
 i_batch_current = 0
 
-num_epochs = 750
+
 
 #initiate checkpoint if inexistant
 if not os.path.isfile(path_to_chkpt):

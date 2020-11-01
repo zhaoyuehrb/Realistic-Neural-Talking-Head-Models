@@ -17,7 +17,7 @@ device = torch.device("cuda:0")
 cpu = torch.device("cpu")
 path_to_embedding = 'e_hat_images.tar'
 new_embedding = 'e_hat_images_new.tar'
-path_to_chkpt = 'model_weights.tar'
+path_to_chkpt = 'model_weights_.tar'
 path_to_save = 'finetuned_model.tar'
 path_to_video = 'examples/fine_tuning/test_video.mp4'
 path_to_images = 'examples/fine_tuning/test_images'
@@ -60,7 +60,7 @@ lossesG = []
 lossesD = []
 i_batch_current = 0
 
-num_epochs = 1000
+num_epochs = 70
 
 #Warning if checkpoint inexistant
 if not os.path.isfile(path_to_chkpt):

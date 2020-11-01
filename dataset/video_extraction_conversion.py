@@ -89,7 +89,10 @@ def generate_landmarks(frames_list):
     
     for i in range(len(frames_list) - len(frame_landmark_list)):
         #filling frame_landmark_list in case of error
-        frame_landmark_list.append(frame_landmark_list[i])
+        try:
+            frame_landmark_list.append(frame_landmark_list[i])
+        except:
+            return None
     
     
     return frame_landmark_list

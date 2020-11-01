@@ -19,6 +19,7 @@ class VidDataSet(Dataset):
     
     def __getitem__(self, idx):
         vid_idx = idx
+        print(idx)
         file = self.fid['File'][idx]
         path = os.path.join(self.path_to_mp4, file)
         frame_mark = select_frames(path , self.K)
